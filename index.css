@@ -2,23 +2,175 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	font-family: "Lexend Deca";
+	font-family: "Montserrat";
+}
+
+:root {
+	/* Colors */
+	--color-primary-900: #222831;
+	--color-primary-700: #393e46;
+	--color-accent: #00adb5;
+	--color-surface: #eeeeee;
+	--color-white: #ffffff;
+	--color-black: #000000;
+
+	/* Semantic colors */
+	--bg: var(--color-white);
+	--text: var(--color-primary-900);
+	--muted: var(--color-primary-700);
+	--accent: var(--color-accent);
+	--surface: var(--color-surface);
+
+	/* Spacing */
+	--space-xs: 8px;
+	--space-sm: 12px;
+	--space-md: 16px;
+	--space-lg: 24px;
+	--space-xl: 40px;
+
+	/* Border radius */
+	--radius-sm: 6px;
+	--radius-md: 12px;
+
+	/* Shadows */
+	--shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+	--shadow-md: 0 6px 18px rgba(34, 40, 49, 0.08);
+
+	/* Breakpoints */
+	--bp-tablet: 600px;
+	--bp-desktop: 1024px;
 }
 
 /*BRANDING - DESKTOP VIEW*/
 
+@media (min-width: var(--bp-desktop)) {
+	body {
+		background-color: var(--bg);
+		color: var(--text);
+		font-size: 16px;
+		line-height: 1.45;
+	}
 
+	h1 {
+		font-size: 48px;
+		font-weight: 700;
+		line-height: 56px;
+		color: var(--text);
+	}
+
+	h2 {
+		font-size: 34px;
+		font-weight: 600;
+		line-height: 44px;
+		color: var(--text);
+	}
+
+	h3 {
+		font-size: 24px;
+		font-weight: 600;
+		line-height: 32px;
+		color: var(--text);
+	}
+
+	p {
+		font-size: 16px;
+		line-height: 26px;
+		color: var(--muted);
+	}
+
+	.container {
+		width: 100%;
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 var(--space-md);
+	}
+}
 
 /*BRANDING - TABLET VIEW*/
+
+@media (min-width: var(--bp-tablet)) and (max-width: 1023px) {
+	body {
+		font-size: 17px;
+	}
+
+	h1 {
+		font-size: 36px;
+		line-height: 44px;
+	}
+
+	h2 {
+		font-size: 28px;
+		line-height: 36px;
+	}
+
+	h3 {
+		font-size: 22px;
+		line-height: 30px;
+	}
+}
+
 
 
 
 /*BRANDING - MOBILE VIEW*/
 
+@media (max-width: 599px) {
+	body {
+		font-size: 16px;
+	}
 
+	h1 {
+		font-size: 28px;
+		line-height: 36px;
+	}
+
+	h2 {
+		font-size: 22px;
+		line-height: 30px;
+	}
+
+	h3 {
+		font-size: 18px;
+		line-height: 26px;
+	}
+}
 
 /*BRANDING - BUTTONS*/
 
+.btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	padding: var(--space-sm) var(--space-md);
+	border: none;
+	border-radius: var(--radius-md);
+	font-weight: 600;
+	cursor: pointer;
+	transition: 0.15s ease-in-out;
+	box-shadow: var(--shadow-sm);
+	text-decoration: none;
+}
+
+.btn-primary {
+	background-color: var(--accent);
+	color: var(--color-white);
+}
+
+.btn-primary:hover {
+	opacity: 0.9;
+	transform: translateY(-1px);
+}
+
+.btn-secondary {
+	background-color: transparent;
+	color: var(--text);
+	border: 1px solid var(--muted);
+}
+
+.btn-secondary:hover {
+	background-color: var(--surface);
+}
 
 
 /*HOMEPAGE SPECIFIC STYLING*/
@@ -26,6 +178,160 @@
 
 
 /*LOGIN PAGE SPECIFIC STYLING*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat";
+  font-weight: bold;
+}
+
+:root {
+  --color-accent: #00adb5;
+  --color-dark: #222831;
+  --color-muted: #555;
+  --color-white: #ffffff;
+}
+
+/* -------------------------
+   LOGIN PAGE STYLING
+--------------------------*/
+.login-page {
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 40px 20px;
+  text-align: center;
+
+  background-image: 
+	linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+  	url('./images/Rectangle 15.png'); 
+  background-size: cover;      
+  background-position: center; 
+  background-repeat: no-repeat;
+}
+
+.login-content h2 {
+  color: var(--color-accent);
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.login-content p {
+  color: var(--color-white);
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+
+/* Login Card */
+.login-card {
+  background-color: var(--color-white);
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  border: 1px solid ;
+  border-color: #000000;
+  width: 100%;
+  max-width: 800px;
+  padding: 32px;
+  text-align: left;
+}
+
+.login-card h4 {
+  color: var(--color-accent);
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+/* Inputs */
+.login-card input[type="text"],
+.login-card input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid;
+  border-radius: 6px;
+  border-color: #000000;
+  margin-bottom: 16px;
+  font-size: 16px;
+  font-family: "Karla";
+  background-color: rgba(100, 100, 100, 0.3); /* grayish background */
+  color: #fff; /* text color */
+  transition: background 0.3s, box-shadow 0.3s;
+}
+
+.login-card input::placeholder {
+  color: #777;
+  font-weight: 500;
+}
+
+/* Checkbox */
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 16px;
+  font-family: "Karla";
+}
+
+/* Button */
+.btn-primary {
+  width: 100%;
+  background-color: var(--color-accent);
+  color: var(--color-white);
+  font-size: 18px;
+  font-weight: 600;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+/* Links */
+.login-links {
+  margin-top: 16px;
+  font-size: 14px;
+}
+
+.login-links p {
+  margin-bottom: 6px;
+  color: #555;
+  font-family: "Karla";
+}
+
+.login-links a {
+  color: var(--color-accent);
+  text-decoration: none;
+  font-weight: 500;
+  font-family: "Karla";
+}
+
+.login-links a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .login-content h2 {
+    font-size: 28px;
+  }
+
+  .login-card {
+    padding: 24px;
+  }
+}
+
 
 
 
