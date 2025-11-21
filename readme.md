@@ -1,6 +1,7 @@
-![Parallox - Airline Booking and Management System Logo](./images/icon_black2.png)
-# Parallox - Airline Booking and Management System
-# Technical Specifications Document
+<p align="center">
+  <img src="./images/icon_black2.png" alt="Parallox - Airline Booking and Management System Logo" />
+</p>
+<h1 align="center">Parallox - Airline Booking and Management System<br>Technical Specifications Document</h1>
 
 ## 1. Title Page
 - **Project Name**: Parallox Airline Booking System
