@@ -160,20 +160,20 @@ A reliable email service API (SMTP or cloud-based provider) is required to send 
 
 The design screenshots include the following pages:
 
-1. Landing / Home
-2. Client Pages
-  2.1 Login Page
-  2.2 Account Overview Page
-3. Booking Pages
-  3.1 Manage Booking Page
-  3.2 Flight Information Page
-  3.3 Passenger Info Page
-  3.4 Seat and Payment Page
-  3.5 Final Customer Details
-  3.6 Confirmation Page
-  3.x Trip Summary Page
-4. About Page
-5. Help and FAQs Page
+a. Landing / Home
+b. Client Pages
+  b.1 Login Page
+  b.2 Account Overview Page
+c. Booking Pages
+  c.1 Manage Booking Page
+  c.2 Flight Information Page
+  c.3 Passenger Info Page
+  c.4 Seat and Payment Page
+  c.5 Final Customer Details
+  c.6 Confirmation Page
+  c.x Trip Summary Page
+d. About Page
+e. Help and FAQs Page
 
 **Links:**
 
