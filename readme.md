@@ -28,7 +28,7 @@
 10. [Appendices](#12-appendices)
 
 ## 3. Introduction
-- **3.1 Purpose**: Explain the purpose of the application.
+**3.1 Purpose**:  
 The fundamental purpose of this Technical Specifications Document (TSD) is to establish the definitive technical blueprint for the Parallox Airline Booking and Management System (P-ABMS). This document specifies the complete functional and non-functional requirements to guide the development team. The P-ABMS must be implemented on the specified MEAN/MERN stack (MongoDB, Express.js, Node.js, and Vue/React) to create a modern, scalable, and efficient platform supporting Parallox Airline's strategy for direct customer distribution and operational efficiency.
 
 - **Scope**: Define what the application will and will not do.
