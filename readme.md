@@ -1,4 +1,5 @@
-# GitSetGo Airline Booking System
+![Parallox - Airline Booking and Management System Logo](./images/icon_black2.png)
+# Parallox - Airline Booking and Management System
 # Technical Specifications Document
 
 ## 1. Title Page
@@ -6,7 +7,7 @@
 - **Version**: 1.0
 - **Date**: November 21, 2025
 - **Author(s)**: 
-
+**Team GitSetGo**
   1. Agapay, Jan Michael 
   2. Estobio, Roldan
   3. Jacinto, Jomari Angel
