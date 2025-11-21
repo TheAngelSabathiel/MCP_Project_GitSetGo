@@ -61,7 +61,39 @@ The scope of the P-ABMS is defined by the Customer-Facing Booking Portal and the
 | CRUD | Create, Read, Update, Delete — the fundamental database operations. |
 | IATA Code | International Air Transport Association three-letter airport code. |
 
+### 3.4 References:
+
+- Airline Booking System Entity-Relationship Diagram (ERD).drawio.png
+- External Payment Gateway API Specification v2.1.
+- OWASP Top 10 Security Guidelines.
+
+
 ## 4. Overall Description
+### 4.1 Product Perspective:
+The **Parallox Airline Booking and Management System (P-ABMS)** is architected as a modern, three-tier, cloud-native application built using the **MEAN/MERN stack**. It serves as the airline’s direct sales channel and core inventory data repository.
+
+**System Architecture Overview**
+
+**1. Presentation Tier (Frontend)**  
+- Built with **Vue.js** or **React**  
+- Runs in the user's browser  
+- Responsible for rendering the dynamic **User Interface (UI)** and handling user interactions  
+
+**2. Application Tier (Backend)**  
+- Implemented using **Node.js** with **Express.js**  
+- Acts as the central **REST API**  
+- Implements all **business logic**, request validation, authentication, and security controls  
+
+**3. Data Tier (Database)**  
+- Powered by **MongoDB**  
+- Stores all application data using a **document-based model**  
+- Utilizes document references to maintain the relationships defined in the **Entity Relationship Diagram (ERD)**  
+
+### 4.2 Product Functions:
+### 4.3 User Classes and Characteristics:
+### 4.4 Operating Environment:
+### 4.5 Assumptions and Dependencies
+
 - **Product Perspective**: Describe how this application fits into a larger system or context.
 - **Product Functions**: Provide a high-level overview of the main functionalities.
 - **User Classes and Characteristics**: Describe the different types of users.
