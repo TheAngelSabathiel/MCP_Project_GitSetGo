@@ -18,7 +18,7 @@ form.addEventListener('submit', function(e) {
             console.log("validation should run")
             // Detect email by presence of '@' and '.'
             let isEmailValid = value.includes('@') && value.includes('.');
-            console.log(isEmail)
+            console.log(isEmailValid)
             if (isEmailValid) {
                 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                 if (!emailRegex.test(value)) {
@@ -52,7 +52,7 @@ form.addEventListener('submit', function(e) {
 
 
 
- const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(value)) {
-                    errors.push('Please enter a valid email address.');
-                }
+ // const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+ //                if (!emailRegex.test(value)) {
+ //                    errors.push('Please enter a valid email address.');
+ //                }
