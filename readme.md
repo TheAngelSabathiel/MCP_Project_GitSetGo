@@ -156,7 +156,31 @@ A fully documented, stable, and PCI DSS–compliant external Payment Gateway API
 A reliable email service API (SMTP or cloud-based provider) is required to send confirmation emails and system notifications.
 
 ## 5. Visual Mockup Reference
-- **Link or Screenshot**: Provide a link to the visual mockup or include a screenshot.
+### 5.1 Design Screenshots
+
+The design screenshots include the following pages:
+
+- Landing / Home
+- Login / Sign-up
+- Search Results
+- Flight Selection / Details
+- Book a Flight
+- Booking Confirmation
+- My Bookings
+- User Profile / Account
+
+**Links:**
+
+- [Click to see the Mobile View Mockup](screenshots/)  
+- [Click to see the Desktop View Mockup](screenshots/)  
+
+---
+
+### 5.2 Entity-Relationship Diagram (ERD)
+
+The following ERD illustrates the MongoDB database schema with collections and their relationships:
+
+![P-ABMS ERD](./ERD/AirlinesERD.png)
 
 ## 6. Features
 ### 6.1 Core Features
@@ -425,7 +449,7 @@ Focuses on ease of updating, debugging, and maintaining the system over its life
 
 
 ## 9. Data Requirements
-## 9.1 Data Models: Conceptual Overview
+### 9.1 Data Models: Conceptual Overview
 
 The **P-ABMS** utilizes a document-based NoSQL model (**MongoDB**), managing relationships primarily through references (`_id` fields) rather than strict joins. This approach optimizes read performance and horizontal scalability.
 
@@ -436,7 +460,7 @@ This document-centric model contrasts with traditional relational (table-based) 
 
 ---
 
-## 9.2 Database Requirements (MongoDB Collections and Relationships)
+### 9.2 Database Requirements (MongoDB Collections and Relationships)
 
 The logical design is implemented via **MongoDB collections**. Relationships are established using 1-to-N references (storing the ID of the "one" side on the "many" side).
 
@@ -453,13 +477,13 @@ The logical design is implemented via **MongoDB collections**. Relationships are
 
 ---
 
-## 9.3 Data Storage and Retrieval
+### 9.3 Data Storage and Retrieval
 
-### Storage Strategy: Document Embedding vs. Referencing
+#### Storage Strategy: Document Embedding vs. Referencing
 - **Referencing (Normalization):** Used for large, frequently updated, or master data entities (`FlightSchedules`, `Customers`). The system stores the `_id` and performs lookups at the application layer.  
 - **Embedding (Denormalization):** Used for stable or frequently read data that is intrinsically part of the parent document (e.g., small passenger lists or ancillary selections inside the `Bookings` document). This reduces the number of queries needed.
 
-### Retrieval Strategy: Indexing for Performance
+#### Retrieval Strategy: Indexing for Performance
 - **Primary Indexes:** `_id` field is indexed automatically.  
 - **Search Indexes:** Compound indexes on `FlightSchedules` for flight search:  
   *```json
@@ -471,15 +495,95 @@ The logical design is implemented via **MongoDB collections**. Relationships are
 
 
 ## 10. External Interface Requirements
-- **User Interfaces**: Provide sketches or descriptions of the user interface.
-- **API Interfaces**: Briefly describe any APIs.
-- **Hardware Interfaces**: Mention any required hardware interactions.
-- **Software Interfaces**: Note any software interactions.
+### 10.1 User Interfaces (UI)
+
+These requirements define the interfaces presented directly to users, built with Vue.js/React.
+
+| **Requirement ID** | **Interface Type** | **Description** | **Technical Requirement** |
+|-------------------|-----------------|----------------|---------------------------|
+| **EIR-U01** | Customer Booking Portal | Public-facing web app for searching, booking, and managing flights. | Must consume all data via the Express.js REST API (EIR-A01). |
+| **EIR-U02** | Administrator Dashboard | Internal authenticated app for CRUD on master data. | Access restricted by JWT middleware using `isAdmin` flag (RBAC). |
+| **EIR-U03** | Mobile Responsiveness | Customer Booking Portal must function across device sizes. | Implement responsive design using CSS frameworks (e.g., Bootstrap). |
+
+---
+
+### 10.2 Hardware Interfaces
+
+P-ABMS is cloud-native, minimizing direct hardware dependencies and relying on cloud abstractions.
+
+| **Requirement ID** | **Interface Type** | **Description / Requirement** |
+|-------------------|-----------------|-------------------------------|
+| **EIR-H01** | Networking | Requires standard TCP/IP stack from cloud hosting (Load Balancer, VPC). All traffic must use TLS 1.2+. |
+| **EIR-H02** | Storage | MongoDB requires persistent, high-speed SSD-backed storage, managed by cloud provider for optimal transactional performance. |
+
+---
+
+### 10.3 Software Interfaces (API Contract)
+
+#### Express.js REST API (Internal & External Interface)
+
+| **Requirement ID** | **Endpoint / Contract** | **Description** | **Protocol** |
+|-------------------|------------------------|----------------|-------------|
+| **EIR-A01** | Core Public REST API | Primary interface for all frontend-backend data exchange. | HTTPS / JSON |
+| **EIR-A02** | Authentication Endpoints | Exposes `/api/auth/register` and `/api/auth/login`. | HTTPS / POST |
+| **EIR-A03** | Admin Endpoints | Protected `/api/admin/*` endpoints for CRUD on master data collections (FlightSchedules, Aircrafts). | HTTPS / CRUD Methods |
+
+#### External Service Interfaces
+
+| **Requirement ID** | **Service Name** | **Purpose** | **Contract / Protocol** |
+|-------------------|-----------------|------------|------------------------|
+| **EIR-S01** | Payment Gateway API | Securely process transactions and receive confirmation/failure status. | HTTPS / REST (PCI-DSS compliant vendor) |
+| **EIR-S02** | Email Service API | Send transactional emails (PNR confirmations, status updates, password resets). | SMTP or Vendor REST API (e.g., SendGrid, SES) |
+
+---
+
+### 10.4 Communications Interfaces
+
+| **Requirement ID** | **Function** | **Protocol / Mechanism** | **Details** |
+|-------------------|-------------|-------------------------|-------------|
+| **EIR-C01** | Real-Time Updates | WebSockets (or Polling) | Notifies frontend of critical, non-user-initiated changes (e.g., Admin delaying a flight). |
+| **EIR-C02** | Database Connection | MongoDB Driver (Native) | Secure internal connection between Express.js backend and MongoDB. |
+| **EIR-C03** | Health Checks | HTTPS / GET | Expose `/health` endpoints for Load Balancers and Container Orchestration monitoring. |
+
 
 ## 11. Glossary
-- **Term 1**: Definition
-- **Term 2**: Definition
+This glossary defines technical and domain-specific terms used throughout the P-ABMS documentation.
+
+| **Term** | **Definition** |
+|----------|----------------|
+| **Atomic Update** | A database operation where updates to one or more document fields are performed as a single, indivisible transaction. Critical for maintaining FlightSeats inventory integrity. |
+| **bcrypt** | A cryptographic hashing function used by the Node.js/Express.js backend to securely store user passwords in the `Customers` collection. |
+| **CRUD** | Acronym for Create, Read, Update, and Delete. The four basic operations on persistent storage, managed via the Administrator dashboard. |
+| **DocumentDB** | A fully managed NoSQL document database service (e.g., AWS DocumentDB), often used as a MongoDB-compatible cloud-hosted alternative. |
+| **Express.js** | Minimalist, flexible Node.js web application framework used to build the core P-ABMS REST API. |
+| **JWT (JSON Web Token)** | Compact, URL-safe means of representing claims (user ID, role) between two parties; used for stateless API authentication. |
+| **MEAN/MERN Stack** | Required technology architecture: MongoDB, Express.js, Angular/React/Vue, Node.js. |
+| **PNR** | Passenger Name Record (`Bookings.bookingReference`). Unique identifier for a flight reservation record, crucial for retrieval (FEAT-007). |
+| **RBAC** | Role-Based Access Control; used by Express Middleware to restrict API endpoint access based on user role (Customer vs. Administrator). |
+| **Time-Limited Hold** | Technical mechanism (FEAT-008) that temporarily marks a `FlightSeat` as reserved during the payment window to prevent race conditions and overbooking. |
+| **Transactional Integrity** | System ability to ensure data remains consistent and accurate, especially for multi-step operations like booking confirmation where both `Booking` and `Payments` records must succeed or fail together. |
+
 
 ## 12. Appendices
-- **Supporting Information**: Add any additional information here.
-- **Revision History**: Record any changes made to the document with dates and descriptions.
+### 12.1 Supporting Information: MongoDB Data Modeling Strategy
+
+The decision to use **MongoDB** dictates specific data modeling choices:
+
+- **Referencing for Master Data:**  
+  Core entities that are updated frequently or exist independently (`Aircrafts`, `Airports`, `Customers`) are stored in their own collections and referenced using their `_id` in transactional documents. This prevents data duplication and simplifies maintenance.
+
+- **Embedding for Passenger Details:**  
+  Passenger-specific data (name, contact info) is embedded within the `Bookings` document. Since this information is static once booked, embedding ensures a single query can retrieve a complete PNR record quickly, supporting FEAT-007.
+
+- **Concurrency Control:**  
+  The atomic update feature of MongoDB is crucial for implementing the **Atomic Seat Hold** (FEAT-008) logic, directly supporting NFR-R03 (Reliability) to prevent double-bookings.
+
+---
+
+### 12.2 Revision History
+
+This table records all major changes and updates made to this Technical Specifications Document (TSD).
+
+| **Version** | **Date** | **Description of Change** | **Author / Source** |
+|------------|----------|--------------------------|------------------|
+| 1.0 | 2025-11-21 | Initial draft TSD incorporating MEAN/MERN stack, full ERD entities, and core functional requirements (FEAT-001 through FEAT-010). | J.Jacinto |
