@@ -125,7 +125,7 @@ The operating environment is defined by the following required technologies:
 
 | **Component** | **Technology** | **Deployment Environment** | **Purpose** |
 |---------------|----------------|-----------------------------|-------------|
-| **Runtime** | Node.js (LTS) & Express.js | Cloud Hosting (generic) using container orchestration (e.g., Docker/Kubernetes) | Executes the backend API and business logic; ensures high availability and scalability. |
+| **Runtime** | Node.js (LTS) & Express.js | Cloud Hosting (generic) using container orchestration | Executes the backend API and business logic; ensures high availability and scalability. |
 | **Frontend** | Vue.js/React (HTML5, CSS, Bootstrap) | Static Web Hosting with a Content Delivery Network (CDN) | Provides a fast, responsive, and secure customer-facing interface. |
 | **Database** | MongoDB | Managed Cloud Database Service | Stores all persistent data, indexed for high throughput and low-latency queries. |
 | **Networking** | N/A | Load Balancer & Virtual Private Cloud (VPC) equivalent | Distributes traffic securely and ensures application resilience across multiple nodes. |
@@ -162,16 +162,16 @@ The design screenshots include the following pages:
 
 a. Landing / Home  
 b. Client Pages  
-  b.1 Login Page  
-  b.2 Account Overview Page  
+&nbsp;b.1 Login Page  
+&nbsp;b.2 Account Overview Page  
 c. Booking Pages  
-  c.1 Manage Booking Page  
-  c.2 Flight Information Page  
-  c.3 Passenger Info Page  
-  c.4 Seat and Payment Page  
-  c.5 Final Customer Details  
-  c.6 Confirmation Page  
-  c.x Trip Summary Page  
+&nbsp;c.1 Manage Booking Page  
+&nbsp;c.2 Flight Information Page  
+&nbsp;c.3 Passenger Info Page  
+&nbsp;c.4 Seat and Payment Page  
+&nbsp;c.5 Final Customer Details  
+&nbsp;c.6 Confirmation Page  
+&nbsp;c.x Trip Summary Page  
 d. About Page  
 e. Help and FAQs Page  
 
